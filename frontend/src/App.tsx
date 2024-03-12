@@ -3,8 +3,11 @@ import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import { Toaster } from "./components/ui/toaster";
 import Signin from "./pages/Signin";
+import AddHotel from "./pages/AddHotel";
+import { useAppContext } from "./contexts/AppContext";
 
 function App() {
+  const { isLoggedIn } = useAppContext();
   return (
     <div>
       <Routes>
@@ -33,6 +36,18 @@ function App() {
             </Layout>
           }
         />
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/add-hotel"
+              element={
+                <Layout>
+                  <AddHotel />
+                </Layout>
+              }
+            />
+          </>
+        )}
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
       <Toaster />
