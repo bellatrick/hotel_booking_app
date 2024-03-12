@@ -5,7 +5,7 @@ import SignOutButton from "./SignOutButton";
 const Header = () => {
   const { isLoggedIn } = useAppContext();
   return (
-    <div className="bg-primary  py-6">
+    <div className="bg-primary px-2 sm:px-1  py-6">
       <div className="container mx-auto flex justify-between">
         <span className="text-2xl text-white font-bold tracking-tight">
           <Link to="/">BookHub.com</Link>

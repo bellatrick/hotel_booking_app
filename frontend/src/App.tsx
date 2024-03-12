@@ -5,6 +5,7 @@ import { Toaster } from "./components/ui/toaster";
 import Signin from "./pages/Signin";
 import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
+import MyHotel from "./pages/MyHotel";
 
 function App() {
   const { isLoggedIn } = useAppContext();
@@ -43,6 +44,14 @@ function App() {
               element={
                 <Layout>
                   <AddHotel />
+                </Layout>
+              }
+            />
+                 <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotel />
                 </Layout>
               }
             />
