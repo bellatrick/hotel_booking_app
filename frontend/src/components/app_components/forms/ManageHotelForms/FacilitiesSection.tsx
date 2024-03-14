@@ -11,8 +11,8 @@ const FacilitiesSection = () => {
     <div>
       <h1 className="text-2xl font-bold mb-5">Facilities</h1>
       <div className="grid grid-cols-5 gap-3">
-        {hotelFacilites.map((facility) => (
-          <label className="capitalize text-sm ">
+        {hotelFacilites.map((facility,i) => (
+          <label key={i} className="capitalize text-sm ">
             <input
               {...register("facilities", {
                 validate: (facilties) => {

@@ -15,9 +15,11 @@ import {
 const DetailsSection = () => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, defaultValues },
     setValue,
+    watch,
   } = useFormContext<HotelFormData>();
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold mb-3"> Add Hotel</h1>
@@ -78,8 +80,10 @@ const DetailsSection = () => {
       <div className="w-[50%]">
         <FormLabel>Star Rating</FormLabel>
         <Select
-          onValueChange={(value) => setValue("starRating", value)}
+          defaultValue={defaultValues?.starRating?.toString()}
+          onValueChange={(value) => setValue("starRating", +value)}
           {...register("starRating", { required: "This field is required" })}
+          value={watch("starRating") ? watch("starRating").toString() : ""}
         >
           <SelectTrigger>
             <SelectValue placeholder="Select a rating" />

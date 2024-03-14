@@ -7,6 +7,8 @@ import GuestSection from "./GuestSection";
 import ImagesSection from "./ImagesSection";
 import { Button } from "@/components/ui/button";
 import { FaSpinner } from "react-icons/fa";
+import { HotelType } from "../../../../../../backend/src/shared/types";
+import { useEffect } from "react";
 
 export type HotelFormData = {
   name: string;
@@ -18,17 +20,19 @@ export type HotelFormData = {
   childCount: number;
   facilities: string[];
   pricePerNight: number;
-  starRating: string;
+  starRating: number;
   imageFiles: FileList;
+  imageUrls: string[];
 };
 interface Props {
   isLoading: boolean;
   onSave: (props: FormData) => void;
+  hotel?: HotelType;
 }
-const ManageHotelForm = ({ isLoading, onSave }: Props) => {
+const ManageHotelForm = ({ isLoading, onSave, hotel }: Props) => {
   const formMethods = useForm<HotelFormData>();
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, reset } = formMethods;
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const {
       name,
@@ -42,8 +46,12 @@ const ManageHotelForm = ({ isLoading, onSave }: Props) => {
       facilities,
       pricePerNight,
       starRating,
+      imageUrls,
     } = formDataJson;
     const formData = new FormData();
+    if (hotel) {
+      formData.append("hotelId", hotel._id);
+    }
     formData.append("name", name);
     formData.append("city", city);
     formData.append("country", country);
@@ -53,17 +61,29 @@ const ManageHotelForm = ({ isLoading, onSave }: Props) => {
     formData.append("childCount", childCount.toString());
 
     formData.append("pricePerNight", pricePerNight.toString());
-    formData.append("starRating", starRating);
+    formData.append("starRating", starRating.toString());
 
     facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);
     });
     // Append files to the FormData object
+
+    if (imageUrls) {
+      imageUrls.forEach((url, i) => {
+        formData.append(`imageUrls[${i}]`, url);
+      });
+    }
     Array.from(imageFiles).forEach((image) => {
       formData.append(`imageFiles`, image);
     });
     onSave(formData);
   });
+  useEffect(() => {
+    if (hotel) {
+      reset(hotel);
+    }
+  }, [hotel, reset]);
+
   return (
     <FormProvider {...formMethods}>
       <form
