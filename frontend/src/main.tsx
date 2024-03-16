@@ -6,12 +6,13 @@ import { ThemeProvider } from "./components/ui/theme-provider.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppContextProvider } from "./contexts/AppContext.tsx";
+import { SearchContextProvider } from "./contexts/SearchContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 0,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false,
     },
   },
 });
@@ -24,7 +25,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         {" "}
         <QueryClientProvider client={queryClient}>
           <AppContextProvider>
-            <App />
+            <SearchContextProvider>
+              {" "}
+              <App />
+            </SearchContextProvider>
           </AppContextProvider>
         </QueryClientProvider>
       </ThemeProvider>

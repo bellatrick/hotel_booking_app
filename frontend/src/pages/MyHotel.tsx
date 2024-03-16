@@ -27,11 +27,11 @@ const MyHotel = () => {
       <div className="grid grid-cols-1 gap-8">
         {HotelData?.map((hotel, i) => (
           <div
-            className="flex flex-col justify-between border h-[750px] rounded-lg gap-4"
+            className="flex flex-col justify-between border h-fit rounded-lg gap-4"
             key={i}
           >
             <img
-              className="h-[70%] object-cover w-full"
+              className="h-[400px] object-cover w-full"
               src={hotel.imageUrls[0]}
               alt=""
             />
