@@ -5,12 +5,12 @@ import SignOutButton from "./SignOutButton";
 const Header = () => {
   const { isLoggedIn } = useAppContext();
   return (
-    <div className="bg-primary   py-6">
-      <div className="container px-8 lg:px-1 mx-auto flex justify-between">
-        <span className="text-2xl text-white font-bold tracking-tight">
+    <div className="bg-primary  py-6">
+      <div className="container gap-6 px-8 lg:px-6 mx-auto flex flex-col sm:flex-row justify-between">
+        <span className="md:text-2xl text-xl text-white font-bold tracking-tight">
           <Link to="/">BookHub.com</Link>
         </span>
-        <span className="space-x-4 font-semibold flex items-center">
+        <span className="space-x-4 font-semibold flex   items-center">
           {isLoggedIn ? (
             <>
               <Link
