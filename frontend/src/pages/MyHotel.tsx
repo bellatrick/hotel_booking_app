@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import * as apiClient from "../api-client";
 import { BsBuilding, BsMap } from "react-icons/bs";
 import { BiMoney, BiHotel, BiStar } from "react-icons/bi";
+import LoadingSpinner from "@/components/app_components/LoadingSpinner";
 const MyHotel = () => {
-  const { data: HotelData } = useQuery(
+  const { data: HotelData, isLoading } = useQuery(
     "fetchMyHotels",
     apiClient.fetchMyHotels,
     {
       onError: () => {},
     }
   );
-  if (!HotelData) {
-    return <span>No hotels found</span>;
+  if (isLoading) {
+    return (
+      <LoadingSpinner/>
+    );
   }
   return (
     <div className="space-y-5 w-full sm:w-[80%] mx-auto">
@@ -61,11 +64,11 @@ const MyHotel = () => {
                   {hotel.starRating} Star Rating
                 </div>
               </div>
-           <div className="flex justify-end">
-           <Button >
-                <Link to={`/edit-hotel/${hotel._id}`}>View Details</Link>
-              </Button>
-           </div>
+              <div className="flex justify-end">
+                <Button>
+                  <Link to={`/edit-hotel/${hotel._id}`}>View Details</Link>
+                </Button>
+              </div>
             </div>
           </div>
         ))}

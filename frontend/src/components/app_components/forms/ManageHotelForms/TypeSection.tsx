@@ -19,7 +19,7 @@ const TypeSection = () => {
           <label
             key={i}
             className={cn(
-              typeWatch === type ? "bg-pink-400" : "bg-gray-300 ",
+              typeWatch === type ? "bg-primary/90" : "bg-gray-300 ",
               "cursor-pointer  text-[13px] rounded-full text-gray-800 px-4 py-2 font-semibold"
             )}
           >

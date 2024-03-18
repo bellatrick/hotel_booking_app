@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { PasswordInput } from "@/components/ui/password";
 import * as apiClient from "../api-client";
@@ -25,6 +25,7 @@ const formSchema = z.object({
 export type LoginToFormSchemaType = z.infer<typeof formSchema>;
 
 const Signin = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const { showToast } = useAppContext();
   const queryClient = useQueryClient();
@@ -35,7 +36,7 @@ const Signin = () => {
         message: "You have successfully logged in",
         type: "success",
       });
-      navigate("/");
+      navigate(location?.state?.from?.pathname || "/");
     },
     onError: (err: Error) => {
       showToast({

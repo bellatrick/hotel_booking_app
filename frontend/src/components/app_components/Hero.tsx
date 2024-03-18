@@ -1,9 +1,9 @@
 
 const Hero = () => {
   return (
-    <div className="bg-primary px-2 sm:px-1 pb-16 text-white">
-      <div className="container mx-auto flex flex-col gap-2">
-        <h1 className="text-4xl font-bold">Discover your next vacation spot</h1>
+    <div className="bg-primary  pb-16 text-white">
+      <div className="container px-8 lg:px-1 mx-auto flex flex-col gap-2">
+        <h1 className="md:text-4xl text-3xl font-bold">Discover your next vacation spot</h1>
         <p>We have the lowest prices available</p>
       </div>
     </div>

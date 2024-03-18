@@ -8,6 +8,7 @@ import UserRoutes from "./routes/users";
 import AuthRoutes from "./routes/auth";
 import MyHotelRoutes from "./routes/my-hotels";
 import HotelRoutes from "./routes/hotels";
+import BookingRoutes from "./routes/my-bookings";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -36,6 +37,7 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/users", UserRoutes);
 app.use("/api/my-hotels", MyHotelRoutes);
 app.use("/api/hotels", HotelRoutes);
+app.use("/api/my-bookings", BookingRoutes);
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
